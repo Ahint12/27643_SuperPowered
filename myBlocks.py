@@ -82,7 +82,7 @@ def FrontMotorShutdown():
 def BackMotorShutdown():
 	BackMotor.stop_action = 'brake'
 	BackMotor.stop()
-	# BackMotor.wait_until_not_moving()
+	BackMotor.wait_until_not_moving()
 	BackMotor.off(brake = True)   
 
 
@@ -157,7 +157,7 @@ def turnLineDetect(MotorPort, Speed, ColorSensorPort, FindBlackOrWhite, StopAtEn
 
 
 
-def PLF_Degrees1(LineFollowerPort, BlackLineSide, Degrees):
+def PLF_Degrees1(LineFollowerPort, BlackLineSide, Degrees, StopAtEnd):
     # By: Ashten Hintzman
 
     # Reset the degrees on both LargeMotors to 0 
@@ -174,15 +174,19 @@ def PLF_Degrees1(LineFollowerPort, BlackLineSide, Degrees):
         while (LWheel.position <= Degrees):
             steering = BlackLineSide * (RColor.reflected_light_intensity - RColor_threshold_midpoint) * Klf
             move_steering.on(steering, 20)
-
+        if (StopAtEnd):
+            WheelShutdown()
+        
     elif (LineFollowerPort == 2):
         # The condition is still the same, stop when LWheel has gone the amount of Degrees it needs to.
         while (LWheel.position <= Degrees):
             steering = BlackLineSide * (LColor.reflected_light_intensity - LColor_threshold_midpoint) * Klf
             move_steering.on(steering, 20)
+        if (StopAtEnd):
+            WheelShutdown()
 
 
-def PLF_Degrees2(LineFollowerPort, BlackLineSide, Degrees):
+def PLF_Degrees2(LineFollowerPort, BlackLineSide, Degrees, StopAtEnd):
     # By: Ashten Hintzman
 
     # Reset the degrees on both LargeMotors to 0 
@@ -199,15 +203,19 @@ def PLF_Degrees2(LineFollowerPort, BlackLineSide, Degrees):
         while (LWheel.position <= Degrees):
             steering = BlackLineSide * (RColor.reflected_light_intensity - RColor_threshold_midpoint) * Klf
             move_steering.on(steering, 25)
+        if (StopAtEnd):
+            WheelShutdown()
 
     elif (LineFollowerPort == 2):
         # The condition is still the same, stop when LWheel has gone the amount of Degrees it needs to.
         while (LWheel.position <= Degrees):
             steering = BlackLineSide * (LColor.reflected_light_intensity - LColor_threshold_midpoint) * Klf
             move_steering.on(steering, 25)
+        if (StopAtEnd):
+            WheelShutdown()
 
 
-def PLF_Degrees3(LineFollowerPort, BlackLineSide, Degrees):
+def PLF_Degrees3(LineFollowerPort, BlackLineSide, Degrees, StopAtEnd):
     # By: Ashten Hintzman
 
     # Reset the degrees on both LargeMotors to 0 
@@ -224,16 +232,19 @@ def PLF_Degrees3(LineFollowerPort, BlackLineSide, Degrees):
         while (LWheel.position <= Degrees):
             steering = BlackLineSide * (RColor.reflected_light_intensity - RColor_threshold_midpoint) * Klf
             move_steering.on(steering, 45)
+        if (StopAtEnd):
+            WheelShutdown()
 
     elif (LineFollowerPort == 2):
         # The condition is still the same, stop when LWheel has gone the amount of Degrees it needs to.
         while (LWheel.position <= Degrees):
             steering = BlackLineSide * (LColor.reflected_light_intensity - LColor_threshold_midpoint) * Klf
             move_steering.on(steering, 45)
+        if (StopAtEnd):
+            WheelShutdown()
 
 
-
-def PLF_LineDetect1(LineFollowerPort, BlackLineSide):
+def PLF_LineDetect1(LineFollowerPort, BlackLineSide, StopAtEnd):
     # By: Ashten Hintzman
 
     # Reset the degrees on both LargeMotors to 0 
@@ -251,6 +262,8 @@ def PLF_LineDetect1(LineFollowerPort, BlackLineSide):
         while (LColor.reflected_light_intensity >= LeftBlackThresholdValue):
             steering = BlackLineSide * (RColor.reflected_light_intensity - RColor_threshold_midpoint) * Klf
             move_steering.on(steering, 20)
+        if (StopAtEnd):
+            WheelShutdown()
 
     elif (LineFollowerPort == 2):
         # Stop when Right Color Sensor sees Black
@@ -258,6 +271,8 @@ def PLF_LineDetect1(LineFollowerPort, BlackLineSide):
         while (RColor.reflected_light_intensity >= RightBlackThresholdValue):
             steering = BlackLineSide * (LColor.reflected_light_intensity - LColor_threshold_midpoint) * Klf
             move_steering.on(steering, 20)
+        if (StopAtEnd):
+            WheelShutdown()
   
 
 def motorStall(MotorPort, Speed, StallSpeed):
@@ -345,7 +360,7 @@ def lineSquare(Speed, FindBlackOrWhite, DelaySide, DelayTime):
         sleep(DelayTime)
 
 
-def driveStraight(Speed, Degrees):
+def driveStraight(Speed, Degrees, StopAtEnd):
     # By: Ashten Hintzman
 
     LWheel.position = 0
@@ -356,10 +371,14 @@ def driveStraight(Speed, Degrees):
         while (avgDegrees <= Degrees):
             move_steering.on(RWheel.position - LWheel.position, Speed)
             avgDegrees = (fabs(LWheel.position) + fabs(RWheel.position)) / 2
+        if (StopAtEnd):
+            WheelShutdown()
     
     else:
         avgDegrees = (fabs(LWheel.position) + fabs(RWheel.position)) / 2
         while (avgDegrees <= Degrees):
             move_steering.on(LWheel.position - RWheel.position, Speed)
             avgDegrees = (fabs(LWheel.position) + fabs(RWheel.position)) / 2
+        if (StopAtEnd):
+            WheelShutdown()
 

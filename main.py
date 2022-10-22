@@ -18,6 +18,7 @@ def masterProgram():
     btn.on_enter = run2
     btn.on_right = run3
     btn.on_up = run4
+    btn.on_down = run5
     # btn.on_down = ReassignRunButtons
 
     # PrintRunNumbersToDisplay()
