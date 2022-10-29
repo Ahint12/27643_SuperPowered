@@ -24,6 +24,19 @@ def run1(state):
         print("Starting run1()", file=sys.stderr)
 
         # Run 1
+        driveStraight(50, 1500, False)
+        lineSquare(15, 'Black', 'Right', 0.2)
+        lineSquare(15, 'White', 'Left', 0.2)
+        driveStraight(20, 150, True)
+        RWheel.on_for_degrees(-15, 355)
+        RWheelShutdown()
+        # PLF_Degrees1(2, -1, 225, True)
+        driveStraight(15, 200, True)
+        sleep(0.5)
+        driveStraight(-30, 200, True)
+        RWheel.on_for_degrees(30, 310)
+        RWheelShutdown()
+        driveStraight(80, 1600, True)
 
 
 def run2(state):

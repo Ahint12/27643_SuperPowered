@@ -356,6 +356,7 @@ def lineSquare(Speed, FindBlackOrWhite, DelaySide, DelayTime):
         while (LColor.reflected_light_intensity <= LeftWhiteThresholdValue):
             sleep(0.001)
         LWheelShutdown()
+    sleep(0.2)
     if (DelaySide == 'Left'):
         sleep(DelayTime)
 
