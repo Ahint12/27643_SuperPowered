@@ -168,4 +168,4 @@ def run5(state):
 
 
         sound.set_volume(pct=40)
-        sound.play_file('/home/robot/sounds/Fanfare.wav', volume=100)
+        sound.play_file('/home/robot/sounds/fanfare.wav', volume=100)
