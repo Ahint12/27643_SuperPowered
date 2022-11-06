@@ -13,6 +13,10 @@ from defineRobot import *
 from myBlocks import *
 
 
+def Trun1A():
+    motorStall('A', -15, -12)
+    motorStall('D', 8, 5)
+
 def run1(state):
     if state:
         print("run1() button pressed", file=sys.stderr)  
@@ -23,28 +27,54 @@ def run1(state):
         lcd.update()
         print("Starting run1()", file=sys.stderr)
 
-        # Run 1
+        #########################################################
+        # RUN 1: 45 Points
+        #########################################################
+
         # M10: Power Plant - 25 points
-        motorStall('A', 20, 10)
-        FrontMotorShutdown()
-        driveStraight(50, 1300, False)
-        lineSquare(15, 'Black', 'Right', 0.1)
-        lineSquare(15, 'White', 'Left', 0.1)
-        motorStall('A', -40, -30)
-        move_tank.on_for_degrees(20, -20, 185)
+        run1A = Thread(target=Trun1A)
+        run1A.start()
+        driveStraight(25, 250, True)
+        LWheel.on_for_degrees(25, 170, True)
         WheelShutdown()
+        driveStraight(40, 1000, False)
         lineSquare(15, 'Black', 'Right', 0.2)
-        FrontMotor.on_for_degrees(95, 125)
-        motorStall('A', 20, 10)
-        FrontMotorShutdown()
-        LWheel.on_for_degrees(-15, 50)
+        lineSquare(15, 'White', 'Left', 0.2)
         WheelShutdown()
-        FrontMotor.on_for_degrees(-50, 100)
+        move_tank.on_for_degrees(15, -15, 170, True)
+        WheelShutdown()
+        lineSquare(15, 'Black', 'Left', 0.15)
+        driveStraight(30, 30, True)
+        WheelShutdown()
+        FrontMotor.on_for_degrees(95, 125)
+        motorStall('A', 20, 15)
+        driveStraight(-10, 15, True)
+        LWheel.on_for_degrees(-15, 45, True)
+        WheelShutdown()
+        FrontMotor.on_for_degrees(-35, 90)
         FrontMotorShutdown()
-        lineSquare(15, 'Black', 'Left', 0.3)
-        lineSquare(15, 'White', 'Right', 0.2)
-        lineSquare(-15, 'Black', 'Left', 0.15)
-        driveStraight(-40, 900, True)
+        sleep(0.75)
+        #####
+        # M05: Smart Grid - 20 points (30 points if other team raises their hand)
+        #####
+        LWheel.on_for_degrees(15, 45, True)
+        WheelShutdown()
+        driveStraight(20, 20, True)
+        lineSquare(-15, 'White', 'Left', 0.3)
+        lineSquare(15, 'Black', 'Right', 0.2)
+        lineSquare(-15, 'White', 'Left', 0.1)
+        driveStraight(-40, 870, True)
+        motorStall('D', -20, -17)
+        driveStraight(15, 80, True)
+        BackMotor.on_for_degrees(30, 50)
+        BackMotorShutdown()
+        driveStraight(60, 400, True)
+        RWheel.on_for_degrees(30, 260, True)
+        driveStraight(80, 1800, True)
+        WheelShutdown()
+
+        # Return to masterProgram()
+        printRunNumbersToDisplay()
 
 
 def run2(state):
@@ -57,10 +87,11 @@ def run2(state):
         lcd.update()
         print("Starting run2()", file=sys.stderr)
         
+        #########################################################
+        # RUN 2: ?? Points
+        #########################################################
 
-        # Run 2
         # M08: Watch Television - 20 points
-        
         driveStraight(40, 640, False)
         driveStraight(20, 70, True)
         # M07: Wind Turbine - 30 points
@@ -94,7 +125,8 @@ def run2(state):
         LWheelShutdown()
         driveStraight(-70, 1050, True)
 
-
+        # Return to masterProgram()
+        printRunNumbersToDisplay()
 
 
 def run3(state):
@@ -107,7 +139,13 @@ def run3(state):
         lcd.update()
         print("Starting run3()", file=sys.stderr)
         
-        # Run 3
+        #########################################################
+        # RUN 3: ?? Points
+        #########################################################
+
+
+        # Return to masterProgram()
+        printRunNumbersToDisplay()
 
         
 def Trun4A():
@@ -120,11 +158,14 @@ def run4(state):
         sound.beep()
         # Clear the first 2 rows of text on the LCD screen using the lcd.rectangle function
         lcd.rectangle(False, x1=0, y1=0, x2=177, y2=39, fill_color='white',outline_color='white')
-        lcd.text_pixels("RUN 1", clear_screen=False, x=0, y=0, text_color='black', font=DisplayFont)
+        lcd.text_pixels("RUN 4", clear_screen=False, x=0, y=0, text_color='black', font=DisplayFont)
         lcd.update()
         print("Starting run1()", file=sys.stderr)
 
-        # Run4
+        #########################################################
+        # RUN 4: ?? Points
+        #########################################################
+
         # M02: Oil Platform - Pump the Oil - 15 Points for 3 Fuel Units in the Fuel Truck
         run4A = Thread(target=Trun4A)
         run4A.start()
@@ -150,7 +191,9 @@ def run4(state):
         BackMotorShutdown()
         move_steering.on_for_degrees(12, 80, 1400)
         move_steering.off()
-        # WheelShutdown()
+
+        # Return to masterProgram()
+        printRunNumbersToDisplay()
 
 
 def run5(state):
@@ -163,9 +206,13 @@ def run5(state):
         lcd.update()
         print("Starting run5()", file=sys.stderr)
 
-        # Run 5
-
+        #########################################################
+        # RUN 5: ?? Points
+        #########################################################
 
 
         sound.set_volume(pct=40)
         sound.play_file('/home/robot/sounds/fanfare.wav', volume=100)
+
+        # Return to masterProgram()
+        printRunNumbersToDisplay()
