@@ -35,8 +35,8 @@ def main():
     print("Starting main()", file=sys.stderr)
 
     sound.set_volume(pct=40)
+    # sound.play_file('/home/robot/sounds/NeverGonnaGive.wav', volume=100)
     sound.play_file('/home/robot/sounds/download.wav', volume=40)
-    # sound.play_file('/home/robot/sounds/NeverGonnaGive.wav', volume=40)
     
     WheelSetup()
     FrontMotorSetup()
