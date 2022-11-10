@@ -10,6 +10,7 @@ import sys
 from allRuns import *
 from runSelected import *
 
+
 def masterProgram():
     print("Starting masterProgram()", file=sys.stderr)
 
@@ -21,6 +22,7 @@ def masterProgram():
     btn.on_down = run5
     # btn.on_down = ReassignRunButtons
 
+    printRunNumbersToDisplay()
 
     # Loop while waiting for a Button to be pressed
     while True:
