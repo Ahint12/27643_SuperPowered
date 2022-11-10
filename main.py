@@ -22,7 +22,7 @@ def masterProgram():
     btn.on_down = run5
     # btn.on_down = ReassignRunButtons
 
-    printRunNumbersToDisplay()
+    PrintRunNumbersToDisplay()
 
     # Loop while waiting for a Button to be pressed
     while True:
