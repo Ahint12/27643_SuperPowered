@@ -46,6 +46,9 @@ def run1(state):
         lineSquare(-15, 'Black', 'Left', 0.15)
         driveStraight(-40, 900, True)
 
+        # Returning to masterProgram(), resetting display.
+        PrintRunNumbersToDisplay()
+
 
 def run2(state):
     if state:
@@ -94,6 +97,9 @@ def run2(state):
         LWheelShutdown()
         driveStraight(-70, 1050, True)
 
+        # Returning to masterProgram(), resetting display.
+        PrintRunNumbersToDisplay()
+
 
 
 
@@ -109,10 +115,13 @@ def run3(state):
         
         # Run 3
 
+        # Returning to masterProgram(), resetting display.
+        PrintRunNumbersToDisplay()
+
         
 def Trun4A():
     motorStall('A', -15, -7)
-    motorStall('D', 10, 5)
+    # motorStall('D', 10, 5)
 
 def run4(state):
     if state:
@@ -142,15 +151,21 @@ def run4(state):
         FrontMotor.on_for_degrees(25, 100)
         FrontMotor.on_for_degrees(-25, 100)
         FrontMotorShutdown()
+        # M03: Energy Storage - Put 3 Energy Units Into the Energy Storage Bin, Remove Energy Storage Tray - 30 points 10 x 3 energy units
+        # 5 points for removing tray from Energy Storage model.
         lineSquare(-15, "Black", "Left", 0.2)
         lineSquare(-15, "White", "Left", 0.2)        
-        RWheel.on_for_degrees(20, 345)
+        RWheel.on_for_degrees(20, 180)
+        driveStraight()
         RWheelShutdown()
         BackMotor.on_for_degrees(-20, 100)
         BackMotorShutdown()
         move_steering.on_for_degrees(12, 80, 1400)
         move_steering.off()
         # WheelShutdown()
+
+        # Returning to masterProgram(), resetting display.
+        PrintRunNumbersToDisplay()
 
 
 def run5(state):
@@ -169,3 +184,6 @@ def run5(state):
 
         sound.set_volume(pct=40)
         sound.play_file('/home/robot/sounds/fanfare.wav', volume=100)
+
+        # Returning to masterProgram(), resetting display.
+        PrintRunNumbersToDisplay()
