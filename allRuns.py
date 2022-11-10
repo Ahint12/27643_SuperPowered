@@ -35,13 +35,13 @@ def run1(state):
         run1A = Thread(target=Trun1A)
         run1A.start()
         driveStraight(25, 250, True)
-        LWheel.on_for_degrees(25, 170, True)
+        LWheel.on_for_degrees(15, 170, True)
         WheelShutdown()
         driveStraight(40, 1000, False)
         lineSquare(15, 'Black', 'Right', 0.2)
         lineSquare(15, 'White', 'Left', 0.2)
         WheelShutdown()
-        move_tank.on_for_degrees(15, -15, 170, True)
+        move_tank.on_for_degrees(15, -15, 180, True)
         WheelShutdown()
         lineSquare(15, 'Black', 'Left', 0.15)
         driveStraight(30, 30, True)
@@ -51,7 +51,7 @@ def run1(state):
         driveStraight(-10, 15, True)
         LWheel.on_for_degrees(-15, 45, True)
         WheelShutdown()
-        FrontMotor.on_for_degrees(-35, 90)
+        FrontMotor.on_for_degrees(-35, 100)
         FrontMotorShutdown()
         sleep(0.75)
         #####
@@ -72,12 +72,6 @@ def run1(state):
         RWheel.on_for_degrees(30, 260, True)
         driveStraight(80, 1800, True)
         WheelShutdown()
-        FrontMotor.on_for_degrees(-50, 100)
-        FrontMotorShutdown()
-        lineSquare(15, 'Black', 'Left', 0.3)
-        lineSquare(15, 'White', 'Right', 0.2)
-        lineSquare(-15, 'Black', 'Left', 0.15)
-        driveStraight(-40, 900, True)
 
         # Returning to masterProgram(), resetting display.
         PrintRunNumbersToDisplay()
@@ -155,7 +149,9 @@ def run3(state):
         
 def Trun4A():
     motorStall('A', -15, -7)
-    # motorStall('D', 10, 5)
+    motorStall('D', -10, -7)
+    BackMotor.on_for_degrees(10, 60)
+    BackMotorShutdown()
 
 def run4(state):
     if state:
@@ -191,15 +187,18 @@ def run4(state):
         # M03: Energy Storage - Put 3 Energy Units Into the Energy Storage Bin, Remove Energy Storage Tray - 30 points 10 x 3 energy units
         # 5 points for removing tray from Energy Storage model.
         lineSquare(-15, "Black", "Left", 0.2)
-        lineSquare(-15, "White", "Left", 0.2)        
+        lineSquare(-15, "White", "Left", 0.2)
         RWheel.on_for_degrees(20, 180)
-        driveStraight()
         RWheelShutdown()
-        BackMotor.on_for_degrees(-20, 100)
+        driveStraight(20, 45, True)
+        RWheel.on_for_degrees(20, 195)
+        RWheelShutdown()
+        driveStraight(-20, 80, True)
+        BackMotor.on_for_degrees(-20, 37)
         BackMotorShutdown()
-        move_steering.on_for_degrees(12, 80, 1400)
-        move_steering.off()
-        # WheelShutdown()
+        move_steering.on_for_degrees(12, 80, 1600)
+        # move_steering.off()
+        WheelShutdown()
 
         # Returning to masterProgram(), resetting display.
         PrintRunNumbersToDisplay()
