@@ -92,19 +92,18 @@ def run2(state):
         #########################################################
 
         # M08: Watch Television - 20 points
-        driveStraight(40, 640, False)
+        driveStraight(35, 510, True)
         driveStraight(20, 70, True)
-        # M07: Wind Turbine - 30 points
-        driveStraight(-15, 125, True)
-        RWheel.on_for_degrees(20, 185)
+         # M07: Wind Turbine - 30 points
+        driveStraight(-15, 130, True)
+        RWheel.on_for_degrees(15, 175)
         RWheelShutdown()
-        driveStraight(30, 340, True)
+        driveStraight(30, 400, False)
         lineDetect(15, 3, "Black", False)
         lineDetect(15, 3, "White", True)
-        driveStraight(15, 90, True)
-        LWheel.on_for_degrees(20, 345)
+        LWheel.on_for_degrees(20, 360)
         LWheelShutdown()
-        driveStraight(20, 250, True)
+        driveStraight(20, 200, True)
         sleep(0.5)
         driveStraight(-20, 70, True)
         driveStraight(20, 80, True)
@@ -116,12 +115,7 @@ def run2(state):
         driveStraight(20, 90, True)
         sleep(0.5)
         driveStraight(-20, 60, True)
-        # sleep(2.0)
-        LWheel.on_for_degrees(-20, 60)
-        LWheelShutdown()
-        # sleep(2.0)
         driveStraight(-30, 270, True)
-        sleep(0.5)
         RWheel.on_for_degrees(20, 140)
         RWheelShutdown()
         LWheel.on_for_degrees(-20, 150)  
@@ -130,7 +124,6 @@ def run2(state):
 
         # Returning to masterProgram(), resetting display.
         PrintRunNumbersToDisplay()
-
 
 
 
