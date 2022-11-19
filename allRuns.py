@@ -138,6 +138,13 @@ def run3(state):
         print("Starting run3()", file=sys.stderr)
         
         # Run 3
+        driveStraight(25, 250, True)
+        RWheel.on_for_degrees(15, 170, True)
+        WheelShutdown()
+        driveStraight(40, 1000, False)
+        lineSquare(15, 'Black', 'Right', 0.2)
+        lineSquare(15, 'White', 'Left', 0.2)
+        WheelShutdown()
 
         # Returning to masterProgram(), resetting display.
         PrintRunNumbersToDisplay()
