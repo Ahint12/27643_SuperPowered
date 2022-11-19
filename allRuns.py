@@ -35,7 +35,7 @@ def run1(state):
         run1A = Thread(target=Trun1A)
         run1A.start()
         driveStraight(25, 250, True)
-        LWheel.on_for_degrees(15, 170, True)
+        LWheel.on_for_degrees(15, 175, True)
         WheelShutdown()
         driveStraight(40, 1000, False)
         lineSquare(15, 'Black', 'Right', 0.2)
