@@ -191,6 +191,7 @@ def run4(state):
         # 5 points for removing tray from Energy Storage model.
         lineSquare(-15, "Black", "Left", 0.2)
         lineSquare(-15, "White", "Left", 0.2)
+        driveStraight(-15, 20, True)
         RWheel.on_for_degrees(20, 180)
         RWheelShutdown()
         driveStraight(20, 45, True)
