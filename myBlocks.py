@@ -20,6 +20,8 @@ def PrintRunNumbersToDisplay():
     lcd.text_pixels("PUSH BUTTON", clear_screen=False, x=0, y=0, text_color='black', font=DisplayFont)
     lcd.text_pixels("FOR RUNS 1-5", clear_screen=False, x=0, y=20, text_color='black', font=DisplayFont)
     lcd.update()
+    sound.set_volume(pct=40)
+    sound.play_file('/home/robot/sounds/ready.wav', volume=40)
 
 
 # Set values for the LargeMotors driving the wheels 
