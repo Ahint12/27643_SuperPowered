@@ -79,7 +79,7 @@ WheelDiameter = 62.4
 Bot1_Kg = [3,3,3,3,3]
 Bot2_Kg = [3,3,3,3,3]
 
-# For each Bot, define Color Sensor Threshhold Values + Kg values for Gyro-based driving
+# For each Bot, define Color Sensor Threshhold Values
 # ASHBOT
 # LeftBlackThresholdValue = 14
 # LeftWhiteThresholdValue = 60
