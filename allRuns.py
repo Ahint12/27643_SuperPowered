@@ -170,6 +170,7 @@ def run4(state):
         turnLineDetect('B', 25, 2, 'Black', True)
         turnLineDetect('C', 15, 2, 'Black', False)
         turnLineDetect('C', 15, 2, 'White', True)
+        PLF_Degrees1(2, -1, 500, False)
         PLF_LineDetect1(2, -1, True)
         RWheel.on_for_degrees(20, 340)
         RWheelShutdown()
@@ -193,7 +194,7 @@ def run4(state):
         driveStraight(-20, 80, True)
         BackMotor.on_for_degrees(-20, 37)
         BackMotorShutdown()
-        move_steering.on_for_degrees(12, 80, 1600)
+        move_steering.on_for_degrees(12, 80, 2000)
         # move_steering.off()
         WheelShutdown()
 
