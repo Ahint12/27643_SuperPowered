@@ -83,9 +83,16 @@ Bot2_Kg = [3,3,3,3,3]
 # ASHBOT
 '''
 Kg = 1.5
-LeftBlackThresholdValue = 14
+# LeftBlackThresholdValue = 14
+# LeftWhiteThresholdValue = 60
+# RightBlackThresholdValue = 14
+# RightWhiteThresholdValue = 60
+
+# NIKBOT
+# Kg = 1.5
+LeftBlackThresholdValue = 9
 LeftWhiteThresholdValue = 60
-RightBlackThresholdValue = 14
+RightBlackThresholdValue = 9
 RightWhiteThresholdValue = 60
 '''
 # NIKBOT

@@ -35,7 +35,7 @@ def run1(state):
         run1A = Thread(target=Trun1A)
         run1A.start()
         driveStraight(25, 250, True)
-        LWheel.on_for_degrees(15, 170, True)
+        LWheel.on_for_degrees(15, 175, True)
         WheelShutdown()
         driveStraight(40, 1000, False)
         lineSquare(15, 'Black', 'Right', 0.2)
@@ -44,6 +44,7 @@ def run1(state):
         move_tank.on_for_degrees(15, -15, 180, True)
         WheelShutdown()
         lineSquare(15, 'Black', 'Left', 0.15)
+        sleep(5.0)
         driveStraight(30, 30, True)
         WheelShutdown()
         FrontMotor.on_for_degrees(95, 125)
@@ -91,12 +92,12 @@ def run2(state):
         # RUN 2: ?? Points
         #########################################################
 
-        # M08: Watch Television - 20 points
+         # M08: Watch Television - 20 points
         driveStraight(35, 510, True)
         driveStraight(20, 70, True)
          # M07: Wind Turbine - 30 points
-        driveStraight(-15, 130, True)
-        RWheel.on_for_degrees(15, 175)
+        driveStraight(-15, 150, True)
+        RWheel.on_for_degrees(15, 190)
         RWheelShutdown()
         driveStraight(30, 400, False)
         lineDetect(15, 3, "Black", False)
@@ -105,16 +106,16 @@ def run2(state):
         LWheelShutdown()
         driveStraight(20, 200, True)
         sleep(0.5)
-        driveStraight(-20, 70, True)
-        driveStraight(20, 80, True)
+        driveStraight(-20, 90, True)
+        driveStraight(20, 210, True)
         sleep(0.5)
-        driveStraight(-20, 70, True)
-        driveStraight(20, 90, True)
+        driveStraight(-20, 90, True)
+        driveStraight(20, 220, True)
         sleep(0.5)
-        driveStraight(-20, 60, True)
-        driveStraight(20, 90, True)
+        driveStraight(-20, 90, True)
+        driveStraight(20, 230, True)
         sleep(0.5)
-        driveStraight(-20, 60, True)
+        driveStraight(-20, 150, True)
         driveStraight(-30, 270, True)
         RWheel.on_for_degrees(20, 140)
         RWheelShutdown()
@@ -137,7 +138,17 @@ def run3(state):
         lcd.update()
         print("Starting run3()", file=sys.stderr)
         
-        # Run 3
+        #########################################################
+        # RUN 3: ?? Points
+        #########################################################
+
+        driveStraight(25, 250, True)
+        RWheel.on_for_degrees(15, 175, True)
+        WheelShutdown()
+        driveStraight(40, 1000, False)
+        lineSquare(15, 'Black', 'Right', 0.2)
+        lineSquare(15, 'White', 'Left', 0.2)
+        WheelShutdown()
 
         # Returning to masterProgram(), resetting display.
         PrintRunNumbersToDisplay()
