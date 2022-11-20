@@ -82,17 +82,17 @@ Bot2_Kg = [3,3,3,3,3]
 # For each Bot, define Color Sensor Threshhold Values + Kg values for Gyro-based driving
 # ASHBOT
 Kg = 1.5
-LeftBlackThresholdValue = 14
-LeftWhiteThresholdValue = 60
-RightBlackThresholdValue = 14
-RightWhiteThresholdValue = 60
+# LeftBlackThresholdValue = 14
+# LeftWhiteThresholdValue = 60
+# RightBlackThresholdValue = 14
+# RightWhiteThresholdValue = 60
 
 # NIKBOT
 # Kg = 1.5
-# LeftBlackThresholdValue = 12
-# LeftWhiteThresholdValue = 75
-# RightBlackThresholdValue = 10
-# RightWhiteThresholdValue = 50
+LeftBlackThresholdValue = 9
+LeftWhiteThresholdValue = 60
+RightBlackThresholdValue = 9
+RightWhiteThresholdValue = 60
 
 LColor_threshold_midpoint = (LeftBlackThresholdValue + LeftWhiteThresholdValue) / 2
 RColor_threshold_midpoint = (RightBlackThresholdValue + RightWhiteThresholdValue) / 2
