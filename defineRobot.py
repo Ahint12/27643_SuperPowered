@@ -87,7 +87,7 @@ RightBlackThresholdValue = 14
 RightWhiteThresholdValue = 60
 
 # NIKBOT
-#LeftBlackThresholdValue = 9
+# LeftBlackThresholdValue = 9
 # LeftWhiteThresholdValue = 60
 # RightBlackThresholdValue = 9
 # RightWhiteThresholdValue = 60
