@@ -142,13 +142,40 @@ def run3(state):
         # RUN 3: ?? Points
         #########################################################
 
-        driveStraight(25, 250, True)
-        RWheel.on_for_degrees(15, 175, True)
+        driveStraight(25, 170, True)
+        WheelShutdown()
+        RWheel.on_for_degrees(15, 170, True)
+        # RWheel.on_for_degrees(15, 180, True)   # ASHBOT
         WheelShutdown()
         driveStraight(40, 1000, False)
         lineSquare(15, 'Black', 'Right', 0.2)
         lineSquare(15, 'White', 'Left', 0.2)
         WheelShutdown()
+        LWheel.on_for_degrees(15, 150, True)
+        WheelShutdown()
+        turnLineDetect('B',15, 3,'Black', True)
+        turnLineDetect('B',15, 3,'White', True)
+        LWheel.on_for_degrees(15, 70, True)
+        WheelShutdown()
+        driveStraight(30, 170, True)
+        RWheel.on_for_degrees(15, 170, True)
+        WheelShutdown()
+        driveStraight(30, 280, True)
+        move_tank.on_for_degrees(15, -15, 70, True)
+        WheelShutdown()
+        driveStraight(30, 150, True)
+        lineSquare(20, 'Black', 'Right', 0.2)
+        lineSquare(20, 'White', 'Left', 0.2)
+        RWheel.on_for_degrees(15, 60, True)
+        WheelShutdown()
+        driveStraight(30, 260, True)
+        RWheel.on_for_degrees(15, 250, True)
+        WheelShutdown()
+        driveStraight(30, 220, True)
+        RWheel.on_for_degrees(15, 260, True)
+        driveStraight(30, 100, True)
+        lineSquare(20, 'White', 'Right', 0.2)
+        lineSquare(20, 'Black', 'Left', 0.2)
 
         # Returning to masterProgram(), resetting display.
         PrintRunNumbersToDisplay()
@@ -213,6 +240,10 @@ def run4(state):
         PrintRunNumbersToDisplay()
 
 
+def Trun5A():
+    motorStall('A', 15, 10)
+
+
 def run5(state):
     if state:
         print("run5() button pressed", file=sys.stderr)  
@@ -226,6 +257,21 @@ def run5(state):
         #########################################################
         # RUN 5: ?? Points
         #########################################################
+
+        run5A = Thread(target=Trun5A)
+        run5A.start()
+        driveStraight(30, 870, True)
+        RWheel.on_for_degrees(-15, 65, True)
+        WheelShutdown()
+        driveStraight(30, 600, True)
+        driveStraight(-30, 300, True) 
+        move_tank.on_for_degrees(-15, 15, 165, True)
+        WheelShutdown()
+        driveStraight(30, 120, True)
+        WheelShutdown()
+        FrontMotor.on_for_degrees(-15, 150)
+        FrontMotorShutdown()
+        driveStraight(-30, 350, True)
 
 
         sound.set_volume(pct=40)
