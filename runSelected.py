@@ -20,11 +20,12 @@ def runSelected():
         # Start coding your Run here
         print("Starting runSelected()", file=sys.stderr)
 
-        # run5A = Thread(target=Trun5A)
-        # run5A.start()
-        driveStraight(25, 400, True)
-        motorStall('A', -20, -15)
-        driveStraight(-25, 120, True)
-        LWheel.on_for_degrees(15, 175, True)
+        driveStraight(25, 340, True)
+        FrontMotor.on_for_degrees(-60, 60, True)
+        FrontMotor.on_for_degrees(60, 100, True)
+        sleep(0.5)
+        motorStall('A', -30, -20)
+        driveStraight(-20, 120, True)
+        LWheel.on_for_degrees(15, 185, True)
         WheelShutdown()
 
