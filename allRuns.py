@@ -49,15 +49,15 @@ def run1(state):
         #####
         # M10: Power Plant - 25 Points
         #####
-        driveStraight(-20, 70, True)
+        driveStraight(-20, 65, True)
         WheelShutdown()
-        LWheel.on_for_degrees(12, 185, True)
+        LWheel.on_for_degrees(12, 180, True)
         WheelShutdown()
         driveStraight(35, 900, False)
         lineSquare(15, 'Black', 'Right', 0.3)
         lineSquare(15, 'White', 'Left', 0.3)
         WheelShutdown()
-        move_tank.on_for_degrees(12, -12, 205, True)
+        move_tank.on_for_degrees(10, -10, 195, True)
         WheelShutdown()
         lineSquare(15, 'Black', 'Left', 0.30)
         lineSquare(-15, 'White', 'Right', 0.20)
@@ -284,7 +284,7 @@ def run5(state):
         WheelShutdown()
         driveStraight(30, 120, True)
         WheelShutdown()
-        FrontMotor.on_for_degrees(-15, 150)
+        FrontMotor.on_for_degrees(-10, 100)
         FrontMotorShutdown()
         driveStraight(-30, 350, True)
 
