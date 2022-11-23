@@ -42,7 +42,7 @@ def run1(state):
         run1A.start()
         driveStraight(20, 380, True)
         motorStall('A', -20, -15)
-        driveStraight(-10, 50, True)
+        driveStraight(-10, 40, True)
         run1B = Thread(target=Trun1B)
         run1B.start()
         driveStraight(15, 70, True)
@@ -57,14 +57,14 @@ def run1(state):
         lineSquare(15, 'Black', 'Right', 0.3)
         lineSquare(15, 'White', 'Left', 0.3)
         WheelShutdown()
-        move_tank.on_for_degrees(12, -12, 195, True)
+        move_tank.on_for_degrees(12, -12, 205, True)
         WheelShutdown()
         lineSquare(15, 'Black', 'Left', 0.30)
         lineSquare(-15, 'White', 'Right', 0.20)
         lineSquare(15, 'Black', 'Left', 0.20)
         driveStraight(30, 30, True)
         WheelShutdown()
-        sleep(0.2)
+        sleep(0.1)
         FrontMotor.on_for_degrees(95, 125)
         motorStall('A', 20, 15)
         driveStraight(-10, 15, True)
@@ -88,11 +88,11 @@ def run1(state):
         BackMotor.on_for_degrees(30, 50)
         BackMotorShutdown()
         driveStraight(60, 400, True)
-        RWheel.on_for_degrees(30, 250, True)
+        RWheel.on_for_degrees(30, 260, True)
         driveStraight(80, 1900, True)
         WheelShutdown()
 
-        # Returning to masterProgram(), resetting display.
+        # Return to masterProgram(), reset display
         PrintRunNumbersToDisplay()
 
 
@@ -115,20 +115,20 @@ def run2(state):
         #####
         # M08: Watch Television - 20 points
         #####
-        driveStraight(35, 510, True)
+        driveStraight(35, 470, True)
         driveStraight(20, 70, True)
         #####
         # M07: Wind Turbine - 30 points
         #####
-        driveStraight(-15, 150, True)
-        RWheel.on_for_degrees(15, 190)
+        driveStraight(-15, 180, True)
+        RWheel.on_for_degrees(15, 200)
         RWheelShutdown()
         driveStraight(30, 400, False)
         lineDetect(15, 3, "Black", False)
         lineDetect(15, 3, "White", True)
         LWheel.on_for_degrees(20, 360)
         LWheelShutdown()
-        driveStraight(20, 200, True)
+        driveStraight(20, 220, True)
         sleep(0.5)
         driveStraight(-20, 90, True)
         driveStraight(20, 210, True)
@@ -140,14 +140,14 @@ def run2(state):
         driveStraight(20, 230, True)
         sleep(0.5)
         driveStraight(-20, 150, True)
-        driveStraight(-30, 270, True)
+        driveStraight(-30, 250, True)
         RWheel.on_for_degrees(20, 140)
         RWheelShutdown()
         LWheel.on_for_degrees(-20, 150)  
         LWheelShutdown()
         driveStraight(-70, 1050, True)
 
-        # Returning to masterProgram(), resetting display.
+        # Return to masterProgram(), reset display
         PrintRunNumbersToDisplay()
 
 
@@ -195,7 +195,7 @@ def run3(state):
         driveStraight(80, 1900, True)
         WheelShutdown()
 
-        # Returning to masterProgram(), resetting display.
+        # Return to masterProgram(), reset display
         PrintRunNumbersToDisplay()
 
         
@@ -254,7 +254,7 @@ def run4(state):
         # move_steering.off()
         WheelShutdown()
 
-        # Returning to masterProgram(), resetting display.
+        # Return to masterProgram(), reset display
         PrintRunNumbersToDisplay()
 
 
@@ -278,10 +278,7 @@ def run5(state):
         WheelSetup()
         run5A = Thread(target=Trun5A)
         run5A.start()
-        driveStraight(30, 870, True)
-        RWheel.on_for_degrees(-15, 65, True)
-        WheelShutdown()
-        driveStraight(30, 600, True)
+        driveStraight(35, 1400, True)
         driveStraight(-30, 300, True) 
         move_tank.on_for_degrees(-15, 15, 165, True)
         WheelShutdown()
@@ -295,5 +292,5 @@ def run5(state):
         sound.set_volume(pct=40)
         sound.play_file('/home/robot/sounds/fanfare.wav', volume=100)
 
-        # Returning to masterProgram(), resetting display.
+        # Return to masterProgram(), reset display
         PrintRunNumbersToDisplay()

@@ -13,14 +13,8 @@ from time import sleep, time
 from defineRobot import *
 
 
-
-
 # Release all motor brakes so that wheels and attachments can be adjusted between Runs
 def ReleaseAllBrakes():
-    LWheel.stop_action = 'coast'
-    RWheel.stop_action = 'coast'
-    FrontMotor.stop_action = 'coast'
-    BackMotor.stop_action = 'coast'
     LWheel.off(brake = False)
     RWheel.off(brake = False)
     FrontMotor.off(brake = False)
@@ -28,6 +22,7 @@ def ReleaseAllBrakes():
 
 
 def PrintRunNumbersToDisplay():
+    # Release all motor brakes between Runs to make it easy to change attachments
     ReleaseAllBrakes()
     # Clear the first 2 rows of text on the LCD screen using the lcd.rectangle function
     lcd.rectangle(False, x1=0, y1=0, x2=177, y2=39, fill_color='white',outline_color='white')
@@ -38,7 +33,7 @@ def PrintRunNumbersToDisplay():
     sound.play_file('/home/robot/sounds/ready.wav', volume=40)
 
 
-# Set values for the LargeMotors driving the wheels 
+# Set values for the Large Motors driving the wheels 
 def WheelSetup(): 
 	LWheel.stop_action = 'hold'
 	LWheel.polarity = 'normal'
@@ -111,8 +106,8 @@ def BackMotorShutdown():
 	BackMotor.off(brake = True)   
 
 
+# One wheel turn that stops when the requested Color Sensor sees the requested color
 def turnTankLineDetect(TurnLeftOrRight, Speed, ColorSensorPort, FindBlackOrWhite, StopAtEnd):
-    # By: Ashten Hintzman
 
     if (TurnLeftOrRight == 'Left'):
         move_tank.on(Speed * -1, Speed)
@@ -124,30 +119,25 @@ def turnTankLineDetect(TurnLeftOrRight, Speed, ColorSensorPort, FindBlackOrWhite
         if (FindBlackOrWhite == 'Black'):
             while (LColor.reflected_light_intensity >= LeftBlackThresholdValue):
                 sleep(0.01)
-            if (StopAtEnd):
-                WheelShutdown()
         if (FindBlackOrWhite == 'White'):
             while (LColor.reflected_light_intensity <= LeftWhiteThresholdValue):
                 sleep(0.01)
-            if (StopAtEnd):
-                WheelShutdown()
 
     # Searching on Right Color Sensor
     if (ColorSensorPort == 3):
         if (FindBlackOrWhite == 'Black'):
             while (RColor.reflected_light_intensity >= RightBlackThresholdValue):
                 sleep(0.01)
-            if (StopAtEnd):
-                WheelShutdown()
         if (FindBlackOrWhite == 'White'):
             while (RColor.reflected_light_intensity <= RightWhiteThresholdValue):
                 sleep(0.01)
-            if (StopAtEnd):
-                WheelShutdown()
+
+    if (StopAtEnd):
+        WheelShutdown()
 
 
+# Two wheel turn that stops when the requested Color Sensor sees the requested color
 def turnLineDetect(MotorPort, Speed, ColorSensorPort, FindBlackOrWhite, StopAtEnd):
-    # By: Ashten Hintzman
 
     if (MotorPort == 'B'):
         LWheel.on(Speed)
@@ -159,33 +149,27 @@ def turnLineDetect(MotorPort, Speed, ColorSensorPort, FindBlackOrWhite, StopAtEn
         if (FindBlackOrWhite == 'Black'):
             while (LColor.reflected_light_intensity >= LeftBlackThresholdValue):
                 sleep(0.01)
-            if (StopAtEnd):
-                WheelShutdown()
         if (FindBlackOrWhite == 'White'):
             while (LColor.reflected_light_intensity <= LeftWhiteThresholdValue):
                 sleep(0.01)
-            if (StopAtEnd):
-                WheelShutdown()
 
     # Searching on Right Color Sensor
     if (ColorSensorPort == 3):
         if (FindBlackOrWhite == 'Black'):
             while (RColor.reflected_light_intensity >= RightBlackThresholdValue):
                 sleep(0.01)
-            if (StopAtEnd):
-                WheelShutdown()
         if (FindBlackOrWhite == 'White'):
             while (RColor.reflected_light_intensity <= RightWhiteThresholdValue):
                 sleep(0.01)
-            if (StopAtEnd):
-                WheelShutdown()
+
+    if (StopAtEnd):
+        WheelShutdown()
 
 
-
+# Slow speed Proportional Line Follower
 def PLF_Degrees1(LineFollowerPort, BlackLineSide, Degrees, StopAtEnd):
-    # By: Ashten Hintzman
 
-    # Reset the degrees on both LargeMotors to 0 
+    # Reset the degrees on both Large Motors to 0 and calculate RLI value to follow the Black/White boundary 
     LWheel.position = 0
     RWheel.position = 0
     LColor_threshold_midpoint = (LeftBlackThresholdValue + LeftWhiteThresholdValue) / 2
@@ -199,22 +183,21 @@ def PLF_Degrees1(LineFollowerPort, BlackLineSide, Degrees, StopAtEnd):
         while (LWheel.position <= Degrees):
             steering = BlackLineSide * (RColor.reflected_light_intensity - RColor_threshold_midpoint) * Klf
             move_steering.on(steering, 20)
-        if (StopAtEnd):
-            WheelShutdown()
         
     elif (LineFollowerPort == 2):
         # The condition is still the same, stop when LWheel has gone the amount of Degrees it needs to.
         while (LWheel.position <= Degrees):
             steering = BlackLineSide * (LColor.reflected_light_intensity - LColor_threshold_midpoint) * Klf
             move_steering.on(steering, 20)
-        if (StopAtEnd):
-            WheelShutdown()
+
+    if (StopAtEnd):
+        WheelShutdown()
 
 
+# Medium speed Proportional Line Follower
 def PLF_Degrees2(LineFollowerPort, BlackLineSide, Degrees, StopAtEnd):
-    # By: Ashten Hintzman
 
-    # Reset the degrees on both LargeMotors to 0 
+    # Reset the degrees on both Large Motors to 0 and calculate RLI value to follow the Black/White boundary 
     LWheel.position = 0
     RWheel.position = 0
     LColor_threshold_midpoint = (LeftBlackThresholdValue + LeftWhiteThresholdValue) / 2
@@ -228,22 +211,21 @@ def PLF_Degrees2(LineFollowerPort, BlackLineSide, Degrees, StopAtEnd):
         while (LWheel.position <= Degrees):
             steering = BlackLineSide * (RColor.reflected_light_intensity - RColor_threshold_midpoint) * Klf
             move_steering.on(steering, 25)
-        if (StopAtEnd):
-            WheelShutdown()
 
     elif (LineFollowerPort == 2):
         # The condition is still the same, stop when LWheel has gone the amount of Degrees it needs to.
         while (LWheel.position <= Degrees):
             steering = BlackLineSide * (LColor.reflected_light_intensity - LColor_threshold_midpoint) * Klf
             move_steering.on(steering, 25)
-        if (StopAtEnd):
-            WheelShutdown()
+
+    if (StopAtEnd):
+        WheelShutdown()
 
 
+# High speed Proportional Line Follower
 def PLF_Degrees3(LineFollowerPort, BlackLineSide, Degrees, StopAtEnd):
-    # By: Ashten Hintzman
 
-    # Reset the degrees on both LargeMotors to 0 
+    # Reset the degrees on both Large Motors to 0 and calculate RLI value to follow the Black/White boundary 
     LWheel.position = 0
     RWheel.position = 0
     LColor_threshold_midpoint = (LeftBlackThresholdValue + LeftWhiteThresholdValue) / 2
@@ -257,20 +239,19 @@ def PLF_Degrees3(LineFollowerPort, BlackLineSide, Degrees, StopAtEnd):
         while (LWheel.position <= Degrees):
             steering = BlackLineSide * (RColor.reflected_light_intensity - RColor_threshold_midpoint) * Klf
             move_steering.on(steering, 45)
-        if (StopAtEnd):
-            WheelShutdown()
 
     elif (LineFollowerPort == 2):
         # The condition is still the same, stop when LWheel has gone the amount of Degrees it needs to.
         while (LWheel.position <= Degrees):
             steering = BlackLineSide * (LColor.reflected_light_intensity - LColor_threshold_midpoint) * Klf
             move_steering.on(steering, 45)
-        if (StopAtEnd):
-            WheelShutdown()
+
+    if (StopAtEnd):
+        WheelShutdown()
 
 
+# Low speed Proportional Line Follower, stop driving when the other Color Sensor finds the requested Line Color
 def PLF_LineDetect1(LineFollowerPort, BlackLineSide, StopAtEnd):
-    # By: Ashten Hintzman
 
     # Reset the degrees on both LargeMotors to 0 
     LWheel.position = 0
@@ -287,8 +268,6 @@ def PLF_LineDetect1(LineFollowerPort, BlackLineSide, StopAtEnd):
         while (LColor.reflected_light_intensity >= LeftBlackThresholdValue):
             steering = BlackLineSide * (RColor.reflected_light_intensity - RColor_threshold_midpoint) * Klf
             move_steering.on(steering, 20)
-        if (StopAtEnd):
-            WheelShutdown()
 
     elif (LineFollowerPort == 2):
         # Stop when Right Color Sensor sees Black
@@ -296,12 +275,13 @@ def PLF_LineDetect1(LineFollowerPort, BlackLineSide, StopAtEnd):
         while (RColor.reflected_light_intensity >= RightBlackThresholdValue):
             steering = BlackLineSide * (LColor.reflected_light_intensity - LColor_threshold_midpoint) * Klf
             move_steering.on(steering, 20)
-        if (StopAtEnd):
-            WheelShutdown()
+
+    if (StopAtEnd):
+        WheelShutdown()
   
 
+# Run the requested motor as far as it will go, stop the motor when it cannot move any more
 def motorStall(MotorPort, Speed, StallSpeed):
-    # By: Ashten Hintzman
 
     if (MotorPort == 'A'):
         FrontMotor.on(Speed)
@@ -318,8 +298,8 @@ def motorStall(MotorPort, Speed, StallSpeed):
         BackMotorShutdown()
         
 
+# Drive straight, forward or backward, until the requested Color Sensor find the requested line color
 def lineDetect(Speed, ColorSensorPort, FindBlackOrWhite, StopAtEnd):
-    # By: Ashten Hintzman
 
     move_steering.on(0, Speed)
 
@@ -328,30 +308,25 @@ def lineDetect(Speed, ColorSensorPort, FindBlackOrWhite, StopAtEnd):
         if (FindBlackOrWhite == 'Black'):
             while (LColor.reflected_light_intensity >= LeftBlackThresholdValue):
                 sleep(0.001)
-            if (StopAtEnd):
-                WheelShutdown()
         if (FindBlackOrWhite == 'White'):
             while (LColor.reflected_light_intensity <= LeftWhiteThresholdValue):
                 sleep(0.001)
-            if (StopAtEnd):
-                WheelShutdown()
 
     # Searching on Right Color Sensor
     if (ColorSensorPort == 3):
         if (FindBlackOrWhite == 'Black'):
             while (RColor.reflected_light_intensity >= RightBlackThresholdValue):
                 sleep(0.001)
-            if (StopAtEnd):
-                WheelShutdown()
         if (FindBlackOrWhite == 'White'):
             while (RColor.reflected_light_intensity <= RightWhiteThresholdValue):
                 sleep(0.001)
-            if (StopAtEnd):
-                WheelShutdown()
+
+    if (StopAtEnd):
+        WheelShutdown()
 
 
+# Thread run in parallel with the Left Wheel, drive the Right Wheel until the Right Color Sensor finds the requested line color
 def lineSquareRight(Speed, FindBlackOrWhite, DelaySide, DelayTime):
-    # By: Ashten Hintzman
 
     RWheel.on(Speed)
     if (FindBlackOrWhite == 'Black'):
@@ -366,8 +341,8 @@ def lineSquareRight(Speed, FindBlackOrWhite, DelaySide, DelayTime):
         sleep(DelayTime)
 
 
+# Drive the Left Wheel until the Left Color Sensor finds the requested line color
 def lineSquare(Speed, FindBlackOrWhite, DelaySide, DelayTime):
-    # By: Ashten Hintzman
 
     t = Thread(target=lineSquareRight, args=(Speed, FindBlackOrWhite, DelaySide, DelayTime))
     t.start()
@@ -386,8 +361,8 @@ def lineSquare(Speed, FindBlackOrWhite, DelaySide, DelayTime):
         sleep(DelayTime)
 
 
+# Drive straight by using the Motor Encorders to keep both wheels moving exactly the same distance
 def driveStraight(Speed, Degrees, StopAtEnd):
-    # By: Ashten Hintzman
 
     LWheel.position = 0
     RWheel.position = 0
@@ -397,14 +372,12 @@ def driveStraight(Speed, Degrees, StopAtEnd):
         while (avgDegrees <= Degrees):
             move_steering.on(RWheel.position - LWheel.position, Speed)
             avgDegrees = (fabs(LWheel.position) + fabs(RWheel.position)) / 2
-        if (StopAtEnd):
-            WheelShutdown()
     
     else:
         avgDegrees = (fabs(LWheel.position) + fabs(RWheel.position)) / 2
         while (avgDegrees <= Degrees):
             move_steering.on(LWheel.position - RWheel.position, Speed)
             avgDegrees = (fabs(LWheel.position) + fabs(RWheel.position)) / 2
-        if (StopAtEnd):
-            WheelShutdown()
 
+    if (StopAtEnd):
+        WheelShutdown()
