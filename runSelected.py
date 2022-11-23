@@ -12,20 +12,35 @@ from time import sleep, time
 from defineRobot import *
 from myBlocks import *
 
-
-
+    
 def runSelected():
 
     if (True):        
         # Start coding your Run here
         print("Starting runSelected()", file=sys.stderr)
 
-        driveStraight(25, 340, True)
-        FrontMotor.on_for_degrees(-60, 60, True)
-        FrontMotor.on_for_degrees(60, 100, True)
-        sleep(0.5)
-        motorStall('A', -30, -20)
-        driveStraight(-20, 120, True)
-        LWheel.on_for_degrees(15, 185, True)
+
+
+
+        '''
+        run6A = Thread(target=Trun6A)
+        run6A.start()
+        driveStraight(30, 350, True)
+        driveStraight(10, 150, True)
+        driveStraight(-10, 100, True)
+        sleep(3.0)
+
+        FrontMotor.on_for_degrees(-10, 100, True)
+        # FrontMotor.on_for_degrees(10, 100, True)
+        sleep(3.0)
+        # run6B = Thread(target=Trun6B)
+        # run6B.start()
+        # sleep(0.5)
+        motorStall('A', -10, -7)
+        driveStraight(-10, 20, True)
+        sleep(3.0)
+        # driveStraight(-20, 120, True)
+        LWheel.on_for_degrees(12, 175, True)
         WheelShutdown()
+        '''
 

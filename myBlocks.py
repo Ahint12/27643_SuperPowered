@@ -14,7 +14,21 @@ from defineRobot import *
 
 
 
+
+# Release all motor brakes so that wheels and attachments can be adjusted between Runs
+def ReleaseAllBrakes():
+    LWheel.stop_action = 'coast'
+    RWheel.stop_action = 'coast'
+    FrontMotor.stop_action = 'coast'
+    BackMotor.stop_action = 'coast'
+    LWheel.off(brake = False)
+    RWheel.off(brake = False)
+    FrontMotor.off(brake = False)
+    BackMotor.off(brake = False)
+
+
 def PrintRunNumbersToDisplay():
+    ReleaseAllBrakes()
     # Clear the first 2 rows of text on the LCD screen using the lcd.rectangle function
     lcd.rectangle(False, x1=0, y1=0, x2=177, y2=39, fill_color='white',outline_color='white')
     lcd.text_pixels("PUSH BUTTON", clear_screen=False, x=0, y=0, text_color='black', font=DisplayFont)
