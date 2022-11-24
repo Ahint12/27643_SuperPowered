@@ -163,36 +163,37 @@ def run3(state):
         
         #########################################################
         # RUN 3: ?? Points
-        #########################################################
-        WheelSetup()
-        driveStraight(25, 170, True)
+        ########################################################
+        driveStraight(25, 240, True)
         WheelShutdown()
         # RWheel.on_for_degrees(15, 170, True)     # NIKBOT
-        RWheel.on_for_degrees(12, 200, True)   # ASHBOT
+        LWheel.on_for_degrees(-12, 200, True)   # ASHBOT
         WheelShutdown()
         driveStraight(40, 1000, False)
         lineSquare(15, 'Black', 'Right', 0.2)
         lineSquare(15, 'White', 'Left', 0.2)
         WheelShutdown()
-        LWheel.on_for_degrees(12, 350, True)
+        LWheel.on_for_degrees(12, 345, True)
         WheelShutdown()
-        driveStraight(30, 190, True)
+        driveStraight(30, 220, True)
         RWheel.on_for_degrees(12, 180, True)
         WheelShutdown()
         driveStraight(30, 280, True)
         move_tank.on_for_degrees(12, -12, 70, True)
         WheelShutdown()
         driveStraight(30, 150, True)
-        lineSquare(20, 'Black', 'Right', 0.2)
-        lineSquare(20, 'White', 'Left', 0.2)
-        RWheel.on_for_degrees(12, 50, True)
+        lineSquare(15, 'Black', 'Right', 0.4)
+        lineSquare(15, 'White', 'Left', 0.3)
+        lineSquare(-15, 'Black', 'Right', 0.2)
+        WheelShutdown()
+        RWheel.on_for_degrees(12, 45, True)
         WheelShutdown()
         driveStraight(30, 240, True)
         RWheel.on_for_degrees(12, 260, True)
         WheelShutdown()
         driveStraight(30, 200, True)
         RWheel.on_for_degrees(12, 320, True)
-        driveStraight(80, 1900, True)
+        driveStraight(80, 2100, True)
         WheelShutdown()
 
         # Return to masterProgram(), reset display
