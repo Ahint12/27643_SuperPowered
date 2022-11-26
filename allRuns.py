@@ -290,8 +290,8 @@ def run5(state):
         driveStraight(-30, 350, True)
 
 
-        sound.set_volume(pct=40)
-        sound.play_file('/home/robot/sounds/fanfare.wav', volume=100)
+        sound.set_volume(pct=100)
+        sound.play_file('/home/robot/sounds/NeverGonnaGive.wav', volume=100)
 
         # Return to masterProgram(), reset display
         PrintRunNumbersToDisplay()

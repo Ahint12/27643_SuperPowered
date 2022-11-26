@@ -35,7 +35,6 @@ def main():
     print("Starting main()", file=sys.stderr)
 
     sound.set_volume(pct=40)
-    # sound.play_file('/home/robot/sounds/NeverGonnaGive.wav', volume=100)
     sound.play_file('/home/robot/sounds/download.wav', volume=40)
     
     WheelSetup()
@@ -43,8 +42,8 @@ def main():
     BackMotorSetup()
 
     # Always have exactly ONE of the next two lines uncommented OR ELSE the bot will do nothing.
-    runSelected()   # Uncomment this line when you only want to work on your Run without using the MasterProgram
-    # masterProgram()  # Uncomment this line when you want to run MasterProgram
+    # runSelected()   # Uncomment this line when you only want to work on your Run without using the MasterProgram
+    masterProgram()  # Uncomment this line when you want to run MasterProgram
 
 if __name__ == '__main__':
     main()
