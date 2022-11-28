@@ -381,3 +381,20 @@ def driveStraight(Speed, Degrees, StopAtEnd):
 
     if (StopAtEnd):
         WheelShutdown()
+
+
+# Accelerate straight by using the Motor Encorders to keep both wheels moving exactly the same distance
+def accelerateStraight(Speed, Degrees, StopAtEnd):
+
+        LWheel.run_to_rel_pos(speed_sp=170, ramp_up_sp=3500, position_sp=83)
+        RWheel.run_to_rel_pos(speed_sp=170, ramp_up_sp=3500, position_sp=-83)
+        while (LWheel.is_running):
+            sleep(0.001)
+        while (RWheel.is_running):    
+            sleep(0.001)
+        LWheel.speed_sp = 0
+        RWheel.speed_sp = 0
+        LWheel.ramp_up_sp = 0
+        RWheel.ramp_up_sp = 0
+        LWheel.position_sp = 0
+        RWheel.position_sp = 0

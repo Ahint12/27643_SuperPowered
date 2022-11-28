@@ -17,7 +17,7 @@ def Trun1A():
     motorStall('D', 7, 5)
 
 def Trun1B():
-    motorStall('A', -20, -15)
+    motorStall('A', -10, -7)
 
 def run1(state):
     if state:
@@ -49,16 +49,44 @@ def run1(state):
         #####
         # M10: Power Plant - 25 Points
         #####
-        driveStraight(-20, 65, True)
-        WheelShutdown()
-        LWheel.on_for_degrees(12, 180, True)
+        driveStraight(-20, 55, True)
+        # RWheel.on_for_degrees(-15, 180, True)
+        # move_tank.on_for_degrees(12, -12, 93)
+
+        LWheel.run_to_rel_pos(speed_sp=170, ramp_up_sp=3500, position_sp=79)
+        RWheel.run_to_rel_pos(speed_sp=170, ramp_up_sp=3500, position_sp=-79)
+        while (LWheel.is_running):
+            sleep(0.001)
+        while (RWheel.is_running):    
+            sleep(0.001)
+        LWheel.speed_sp = 0
+        RWheel.speed_sp = 0
+        LWheel.ramp_up_sp = 0
+        RWheel.ramp_up_sp = 0
+        LWheel.position_sp = 0
+        RWheel.position_sp = 0
+
         WheelShutdown()
         driveStraight(35, 900, False)
         lineSquare(15, 'Black', 'Right', 0.3)
-        lineSquare(15, 'White', 'Left', 0.3)
+        lineSquare(15, 'White', 'Left', 0.2)
         WheelShutdown()
-        move_tank.on_for_degrees(10, -10, 195, True)
+        # move_tank.on_for_degrees(12, -11, 200, True)
+
+        LWheel.run_to_rel_pos(speed_sp=170, ramp_up_sp=3500, position_sp=170)
+        RWheel.run_to_rel_pos(speed_sp=170, ramp_up_sp=3500, position_sp=-170)
+        while (LWheel.is_running):
+            sleep(0.001)
+        while (RWheel.is_running):    
+            sleep(0.001)
+        LWheel.speed_sp = 0
+        RWheel.speed_sp = 0
+        LWheel.ramp_up_sp = 0
+        RWheel.ramp_up_sp = 0
+        LWheel.position_sp = 0
+        RWheel.position_sp = 0
         WheelShutdown()
+
         lineSquare(15, 'Black', 'Left', 0.30)
         lineSquare(-15, 'White', 'Right', 0.20)
         lineSquare(15, 'Black', 'Left', 0.20)
@@ -120,30 +148,36 @@ def run2(state):
         #####
         # M07: Wind Turbine - 30 points
         #####
-        driveStraight(-15, 180, True)
-        RWheel.on_for_degrees(15, 200)
+        driveStraight(-25, 170, True)
+        RWheel.on_for_degrees(25, 210)
         RWheelShutdown()
-        driveStraight(30, 400, False)
+        driveStraight(35, 400, False)
         lineDetect(15, 3, "Black", False)
         lineDetect(15, 3, "White", True)
-        LWheel.on_for_degrees(20, 360)
+        LWheel.on_for_degrees(25, 360)
         LWheelShutdown()
         driveStraight(20, 220, True)
-        sleep(0.5)
+        sleep(0.1)
         driveStraight(-20, 90, True)
         driveStraight(20, 210, True)
-        sleep(0.5)
+        sleep(0.1)
         driveStraight(-20, 90, True)
         driveStraight(20, 220, True)
-        sleep(0.5)
+        sleep(0.1)
         driveStraight(-20, 90, True)
         driveStraight(20, 230, True)
+        sleep(0.1)
+        #####
+        # M14: Toy Factory - 30 points
+        #####
+        # driveStraight(-20, 150, True)
+        # driveStraight(-30, 250, True)
+        driveStraight(-30, 290, False)
+        driveStraight(-15, 50, True)
         sleep(0.5)
-        driveStraight(-20, 150, True)
-        driveStraight(-30, 250, True)
-        RWheel.on_for_degrees(20, 140)
+        RWheel.on_for_degrees(25, 140)
         RWheelShutdown()
-        LWheel.on_for_degrees(-20, 150)  
+        LWheel.on_for_degrees(-25, 150)  
         LWheelShutdown()
         driveStraight(-70, 1050, True)
 
@@ -164,36 +198,49 @@ def run3(state):
         #########################################################
         # RUN 3: ?? Points
         ########################################################
-        driveStraight(25, 240, True)
+        driveStraight(30, 230, True)
         WheelShutdown()
-        # RWheel.on_for_degrees(15, 170, True)     # NIKBOT
-        LWheel.on_for_degrees(-12, 200, True)   # ASHBOT
-        WheelShutdown()
+        # LWheel.on_for_degrees(-12, 195, True)   # ASHBOT
+        # WheelShutdown()
+        
+        LWheel.run_to_rel_pos(speed_sp=170, ramp_up_sp=3500, position_sp=-83)
+        RWheel.run_to_rel_pos(speed_sp=170, ramp_up_sp=3500, position_sp=83)
+        while (LWheel.is_running):
+            sleep(0.001)
+        while (RWheel.is_running):    
+            sleep(0.001)
+        LWheel.speed_sp = 0
+        RWheel.speed_sp = 0
+        LWheel.ramp_up_sp = 0
+        RWheel.ramp_up_sp = 0
+        LWheel.position_sp = 0
+        RWheel.position_sp = 0
+
         driveStraight(40, 1000, False)
         lineSquare(15, 'Black', 'Right', 0.2)
         lineSquare(15, 'White', 'Left', 0.2)
         WheelShutdown()
-        LWheel.on_for_degrees(12, 345, True)
+        LWheel.on_for_degrees(15, 345, True)
         WheelShutdown()
-        driveStraight(30, 220, True)
-        RWheel.on_for_degrees(12, 180, True)
+        driveStraight(35, 170, True)
+        RWheel.on_for_degrees(15, 172, True)
         WheelShutdown()
         driveStraight(30, 280, True)
-        move_tank.on_for_degrees(12, -12, 70, True)
+        move_tank.on_for_degrees(15, -15, 70, True)
         WheelShutdown()
-        driveStraight(30, 150, True)
+        driveStraight(35, 150, True)
         lineSquare(15, 'Black', 'Right', 0.4)
         lineSquare(15, 'White', 'Left', 0.3)
         lineSquare(-15, 'Black', 'Right', 0.2)
         WheelShutdown()
-        RWheel.on_for_degrees(12, 45, True)
+        RWheel.on_for_degrees(15, 45, True)
         WheelShutdown()
-        driveStraight(30, 240, True)
-        RWheel.on_for_degrees(12, 260, True)
+        driveStraight(35, 240, True)
+        RWheel.on_for_degrees(15, 260, True)
         WheelShutdown()
-        driveStraight(30, 200, True)
-        RWheel.on_for_degrees(12, 320, True)
-        driveStraight(80, 2100, True)
+        driveStraight(35, 220, True)
+        RWheel.on_for_degrees(15, 320, True)
+        driveStraight(80, 1800, True)
         WheelShutdown()
 
         # Return to masterProgram(), reset display
@@ -262,7 +309,6 @@ def run4(state):
 def Trun5A():
     motorStall('A', 15, 10)
 
-
 def run5(state):
     if state:
         print("run5() button pressed", file=sys.stderr)  
@@ -279,19 +325,19 @@ def run5(state):
         WheelSetup()
         run5A = Thread(target=Trun5A)
         run5A.start()
-        driveStraight(35, 1400, True)
+        driveStraight(45, 1400, True)
         driveStraight(-30, 300, True) 
         move_tank.on_for_degrees(-15, 15, 165, True)
         WheelShutdown()
-        driveStraight(30, 120, True)
-        WheelShutdown()
+        driveStraight(30, 110, True)
+        driveStraight(-20, 30, True)
         FrontMotor.on_for_degrees(-10, 100)
         FrontMotorShutdown()
-        driveStraight(-30, 350, True)
-
+        driveStraight(-30, 250, True)
 
         sound.set_volume(pct=100)
-        sound.play_file('/home/robot/sounds/NeverGonnaGive.wav', volume=100)
+        # sound.play_file('/home/robot/sounds/NeverGonnaGive.wav', volume=100)
+        sound.play_file('/home/robot/sounds/fanfare.wav', volume=100)
 
         # Return to masterProgram(), reset display
         PrintRunNumbersToDisplay()
