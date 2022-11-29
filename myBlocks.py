@@ -384,17 +384,39 @@ def driveStraight(Speed, Degrees, StopAtEnd):
 
 
 # Accelerate straight by using the Motor Encorders to keep both wheels moving exactly the same distance
-def accelerateStraight(Speed, Degrees, StopAtEnd):
+def oneWheelTurn(Wheel, Speed_SP, RampUp_SP, Position_SP):
 
-        LWheel.run_to_rel_pos(speed_sp=170, ramp_up_sp=3500, position_sp=83)
-        RWheel.run_to_rel_pos(speed_sp=170, ramp_up_sp=3500, position_sp=-83)
+    if (Wheel == 'Left'):
+        LWheel.run_to_rel_pos(speed_sp=Speed_SP, ramp_up_sp=RampUp_SP, position_sp=Position_SP)
         while (LWheel.is_running):
             sleep(0.001)
-        while (RWheel.is_running):    
-            sleep(0.001)
         LWheel.speed_sp = 0
-        RWheel.speed_sp = 0
         LWheel.ramp_up_sp = 0
-        RWheel.ramp_up_sp = 0
         LWheel.position_sp = 0
+    if (Wheel == 'Right'):
+        RWheel.run_to_rel_pos(speed_sp=Speed_SP, ramp_up_sp=RampUp_SP, position_sp=Position_SP)
+        while (RWheel.is_running):
+            sleep(0.001)
+        RWheel.speed_sp = 0
+        RWheel.ramp_up_sp = 0
         RWheel.position_sp = 0
+
+
+def twoWheelTurn(Direction, Speed_SP, RampUp_SP, Position_SP):
+
+    if (Direction == 'Left'):
+        LWheel.run_to_rel_pos(speed_sp=Speed_SP, ramp_up_sp=RampUp_SP, position_sp=-Position_SP)
+        RWheel.run_to_rel_pos(speed_sp=Speed_SP, ramp_up_sp=RampUp_SP, position_sp=Position_SP)
+    if (Direction == 'Right'):
+        LWheel.run_to_rel_pos(speed_sp=Speed_SP, ramp_up_sp=RampUp_SP, position_sp=Position_SP)
+        RWheel.run_to_rel_pos(speed_sp=Speed_SP, ramp_up_sp=RampUp_SP, position_sp=-Position_SP)
+    while (LWheel.is_running):
+        sleep(0.001)
+    while (RWheel.is_running):    
+        sleep(0.001)
+    LWheel.speed_sp = 0
+    RWheel.speed_sp = 0
+    LWheel.ramp_up_sp = 0
+    RWheel.ramp_up_sp = 0
+    LWheel.position_sp = 0
+    RWheel.position_sp = 0

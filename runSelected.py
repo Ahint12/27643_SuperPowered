@@ -12,6 +12,13 @@ from time import sleep, time
 from defineRobot import *
 from myBlocks import *
 
+
+def Trun6A():
+    motorStall('A', 15, 12)
+    motorStall('D', 7, 5)
+
+def Trun6B():
+    motorStall('A', -10, -7)
     
 def runSelected():
 
@@ -21,5 +28,21 @@ def runSelected():
 
 
 
-
-
+        '''
+        oneWheelTurn('Left', 170, 3500, 83)
+        sleep(1.0)
+        oneWheelTurn('Left', 170, 3500, -83)
+        sleep(1.0)
+        oneWheelTurn('Right', 170, 3500, 83)
+        sleep(1.0)
+        oneWheelTurn('Right', 170, 3500, -83)
+        sleep(1.0)
+        twoWheelTurn('Left', 170, 3500, 165)
+        sleep(1.0)
+        twoWheelTurn('Left', 170, 3500, -165)
+        sleep(1.0)
+        twoWheelTurn('Right', 170, 3500, 165)
+        sleep(1.0)
+        twoWheelTurn('Right', 170, 3500, -165)
+        sleep(1.0)
+        '''

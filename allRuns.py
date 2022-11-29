@@ -32,75 +32,46 @@ def run1(state):
         #########################################################
         # RUN 1: 45 Points
         #########################################################
-        WheelSetup()
-        FrontMotorSetup()
-        BackMotorSetup()
+
         #####
         # M11: Hydroelectric Dam - 20 Points
         #####
         run1A = Thread(target=Trun1A)
         run1A.start()
-        driveStraight(20, 380, True)
+        driveStraight(30, 390, True)
         motorStall('A', -20, -15)
         driveStraight(-10, 40, True)
         run1B = Thread(target=Trun1B)
         run1B.start()
-        driveStraight(15, 70, True)
+        driveStraight(20, 70, True)
+
         #####
         # M10: Power Plant - 25 Points
         #####
-        driveStraight(-20, 55, True)
-        # RWheel.on_for_degrees(-15, 180, True)
-        # move_tank.on_for_degrees(12, -12, 93)
-
-        LWheel.run_to_rel_pos(speed_sp=170, ramp_up_sp=3500, position_sp=79)
-        RWheel.run_to_rel_pos(speed_sp=170, ramp_up_sp=3500, position_sp=-79)
-        while (LWheel.is_running):
-            sleep(0.001)
-        while (RWheel.is_running):    
-            sleep(0.001)
-        LWheel.speed_sp = 0
-        RWheel.speed_sp = 0
-        LWheel.ramp_up_sp = 0
-        RWheel.ramp_up_sp = 0
-        LWheel.position_sp = 0
-        RWheel.position_sp = 0
-
+        driveStraight(-25, 55, True)
+        twoWheelTurn('Right', 170, 3500, 79)
+        driveStraight(35, 100, False)
+        driveStraight(45, 100, False)
+        driveStraight(50, 700, False)
+        lineSquare(15, 'Black', 'Right', 0.2)
+        lineSquare(15, 'White', 'Left', 0.15)
         WheelShutdown()
-        driveStraight(35, 900, False)
-        lineSquare(15, 'Black', 'Right', 0.3)
-        lineSquare(15, 'White', 'Left', 0.2)
-        WheelShutdown()
-        # move_tank.on_for_degrees(12, -11, 200, True)
-
-        LWheel.run_to_rel_pos(speed_sp=170, ramp_up_sp=3500, position_sp=170)
-        RWheel.run_to_rel_pos(speed_sp=170, ramp_up_sp=3500, position_sp=-170)
-        while (LWheel.is_running):
-            sleep(0.001)
-        while (RWheel.is_running):    
-            sleep(0.001)
-        LWheel.speed_sp = 0
-        RWheel.speed_sp = 0
-        LWheel.ramp_up_sp = 0
-        RWheel.ramp_up_sp = 0
-        LWheel.position_sp = 0
-        RWheel.position_sp = 0
-        WheelShutdown()
-
-        lineSquare(15, 'Black', 'Left', 0.30)
-        lineSquare(-15, 'White', 'Right', 0.20)
-        lineSquare(15, 'Black', 'Left', 0.20)
+        twoWheelTurn('Right', 170, 3500, 170)
+        lineSquare(15, 'Black', 'Left', 0.25)
+        lineSquare(-15, 'White', 'Right', 0.15)
+        lineSquare(15, 'Black', 'Left', 0.1)
         driveStraight(30, 30, True)
         WheelShutdown()
         sleep(0.1)
         FrontMotor.on_for_degrees(95, 125)
-        motorStall('A', 20, 15)
+        motorStall('A', 15, 12)
         driveStraight(-10, 15, True)
         LWheel.on_for_degrees(-15, 45, True)
         WheelShutdown()
         FrontMotor.on_for_degrees(-35, 100)
-        sleep(0.75)
+        sleep(0.6)
         FrontMotorShutdown()
+
         #####
         # M05: Smart Grid - 20 points (30 points if other team raises their hand)
         #####
@@ -109,15 +80,17 @@ def run1(state):
         driveStraight(20, 20, True)
         lineSquare(-15, 'White', 'Left', 0.3)
         lineSquare(15, 'Black', 'Right', 0.2)
-        lineSquare(-15, 'White', 'Left', 0.1)
-        driveStraight(-45, 870, True)
+        lineSquare(-15, 'White', 'Left', 0.2)
+        # driveStraight(-45, 870, True)
+        driveStraight(-40, 100, False)
+        driveStraight(-50, 760, True)
         motorStall('D', -20, -17)
         driveStraight(15, 100, True)
         BackMotor.on_for_degrees(30, 50)
         BackMotorShutdown()
-        driveStraight(60, 400, True)
-        RWheel.on_for_degrees(30, 260, True)
-        driveStraight(80, 1900, True)
+        driveStraight(80, 400, True)
+        RWheel.on_for_degrees(35, 260, True)
+        driveStraight(80, 1800, True)
         WheelShutdown()
 
         # Return to masterProgram(), reset display
@@ -148,8 +121,8 @@ def run2(state):
         #####
         # M07: Wind Turbine - 30 points
         #####
-        driveStraight(-25, 170, True)
-        RWheel.on_for_degrees(25, 210)
+        driveStraight(-25, 160, True)
+        RWheel.on_for_degrees(25, 205)
         RWheelShutdown()
         driveStraight(35, 400, False)
         lineDetect(15, 3, "Black", False)
@@ -167,6 +140,7 @@ def run2(state):
         driveStraight(-20, 90, True)
         driveStraight(20, 230, True)
         sleep(0.1)
+
         #####
         # M14: Toy Factory - 30 points
         #####
@@ -197,49 +171,31 @@ def run3(state):
         
         #########################################################
         # RUN 3: ?? Points
-        ########################################################
-        driveStraight(30, 230, True)
-        WheelShutdown()
-        # LWheel.on_for_degrees(-12, 195, True)   # ASHBOT
-        # WheelShutdown()
-        
-        LWheel.run_to_rel_pos(speed_sp=170, ramp_up_sp=3500, position_sp=-83)
-        RWheel.run_to_rel_pos(speed_sp=170, ramp_up_sp=3500, position_sp=83)
-        while (LWheel.is_running):
-            sleep(0.001)
-        while (RWheel.is_running):    
-            sleep(0.001)
-        LWheel.speed_sp = 0
-        RWheel.speed_sp = 0
-        LWheel.ramp_up_sp = 0
-        RWheel.ramp_up_sp = 0
-        LWheel.position_sp = 0
-        RWheel.position_sp = 0
+        #########################################################
 
-        driveStraight(40, 1000, False)
+        driveStraight(35, 230, True)
+        twoWheelTurn('Left', 170, 3500, 85)
+        driveStraight(40, 100, False)
+        driveStraight(50, 900, False)
         lineSquare(15, 'Black', 'Right', 0.2)
         lineSquare(15, 'White', 'Left', 0.2)
         WheelShutdown()
-        LWheel.on_for_degrees(15, 345, True)
-        WheelShutdown()
-        driveStraight(35, 170, True)
-        RWheel.on_for_degrees(15, 172, True)
-        WheelShutdown()
-        driveStraight(30, 280, True)
-        move_tank.on_for_degrees(15, -15, 70, True)
-        WheelShutdown()
+        oneWheelTurn('Left', 170, 3500, 350)
+        driveStraight(40, 170, True)
+        oneWheelTurn('Right', 170, 3500, 172)
+        driveStraight(35, 280, True)
+        twoWheelTurn('Right', 170, 3500, 75)
         driveStraight(35, 150, True)
-        lineSquare(15, 'Black', 'Right', 0.4)
-        lineSquare(15, 'White', 'Left', 0.3)
-        lineSquare(-15, 'Black', 'Right', 0.2)
+        lineSquare(15, 'Black', 'Right', 0.3)
+        lineSquare(15, 'White', 'Left', 0.2)
+        lineSquare(-15, 'Black', 'Right', 0.15)
         WheelShutdown()
-        RWheel.on_for_degrees(15, 45, True)
-        WheelShutdown()
+        oneWheelTurn('Right', 170, 3500, 45)
         driveStraight(35, 240, True)
-        RWheel.on_for_degrees(15, 260, True)
+        oneWheelTurn('Right', 170, 3500, 260)
         WheelShutdown()
         driveStraight(35, 220, True)
-        RWheel.on_for_degrees(15, 320, True)
+        oneWheelTurn('Right', 170, 3500, 305)
         driveStraight(80, 1800, True)
         WheelShutdown()
 
@@ -266,8 +222,10 @@ def run4(state):
         #########################################################
         # RUN 4: ?? Points
         #########################################################
-        WheelSetup()
+
+        #####
         # M02: Oil Platform - Pump the Oil - 15 Points for 3 Fuel Units in the Fuel Truck
+        #####
         run4A = Thread(target=Trun4A)
         run4A.start()
         move_steering.on_for_degrees(0, 30, 180)    
@@ -285,8 +243,10 @@ def run4(state):
         FrontMotor.on_for_degrees(25, 100)
         FrontMotor.on_for_degrees(-25, 100)
         FrontMotorShutdown()
+        #####
         # M03: Energy Storage - Put 3 Energy Units Into the Energy Storage Bin, Remove Energy Storage Tray - 30 points 10 x 3 energy units
         # 5 points for removing tray from Energy Storage model.
+        #####
         lineSquare(-15, "Black", "Left", 0.2)
         lineSquare(-15, "White", "Left", 0.2)
         driveStraight(-15, 20, True)
@@ -322,7 +282,6 @@ def run5(state):
         #########################################################
         # RUN 5: ?? Points
         #########################################################
-        WheelSetup()
         run5A = Thread(target=Trun5A)
         run5A.start()
         driveStraight(45, 1400, True)
