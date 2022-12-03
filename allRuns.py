@@ -110,19 +110,18 @@ def run2(state):
         #########################################################
         # RUN 2: ?? Points
         #########################################################
-        WheelSetup()
-        FrontMotorSetup()
-        BackMotorSetup()
+
         #####
         # M08: Watch Television - 20 points
         #####
         driveStraight(35, 470, True)
         driveStraight(20, 70, True)
+
         #####
         # M07: Wind Turbine - 30 points
         #####
-        driveStraight(-25, 160, True)
-        RWheel.on_for_degrees(25, 205)
+        driveStraight(-25, 150, True)
+        RWheel.on_for_degrees(25, 195)
         RWheelShutdown()
         driveStraight(35, 400, False)
         lineDetect(15, 3, "Black", False)
@@ -144,8 +143,6 @@ def run2(state):
         #####
         # M14: Toy Factory - 30 points
         #####
-        # driveStraight(-20, 150, True)
-        # driveStraight(-30, 250, True)
         driveStraight(-30, 290, False)
         driveStraight(-15, 50, True)
         sleep(0.5)
@@ -180,7 +177,7 @@ def run3(state):
         lineSquare(15, 'Black', 'Right', 0.2)
         lineSquare(15, 'White', 'Left', 0.2)
         WheelShutdown()
-        oneWheelTurn('Left', 170, 3500, 350)
+        oneWheelTurn('Left', 170, 2000, 340)
         driveStraight(40, 160, True)
         oneWheelTurn('Right', 170, 3500, 172)
         driveStraight(35, 280, True)
@@ -194,9 +191,10 @@ def run3(state):
         driveStraight(35, 240, True)
         oneWheelTurn('Right', 170, 3500, 260)
         WheelShutdown()
-        driveStraight(35, 230, True)
-        oneWheelTurn('Right', 170, 3500, 295)
-        driveStraight(80, 1800, True)
+        driveStraight(35, 235, True)
+        oneWheelTurn('Right', 170, 3500, 290)
+        driveStraight(80, 300, False)
+        move_steering.on_for_degrees(10, 80, 1500)
         WheelShutdown()
 
         # Return to masterProgram(), reset display
@@ -243,9 +241,9 @@ def run4(state):
         FrontMotor.on_for_degrees(25, 100)
         FrontMotor.on_for_degrees(-25, 100)
         FrontMotorShutdown()
+
         #####
-        # M03: Energy Storage - Put 3 Energy Units Into the Energy Storage Bin, Remove Energy Storage Tray - 30 points 10 x 3 energy units
-        # 5 points for removing tray from Energy Storage model.
+        # M03: Energy Storage - 35 points - 10 x 3 energy units + 5 points for removing tray
         #####
         lineSquare(-15, "Black", "Left", 0.2)
         lineSquare(-15, "White", "Left", 0.2)
@@ -259,7 +257,6 @@ def run4(state):
         BackMotor.on_for_degrees(-20, 37)
         BackMotorShutdown()
         move_steering.on_for_degrees(12, 80, 1900)
-        # move_steering.off()
         WheelShutdown()
 
         # Return to masterProgram(), reset display
@@ -282,10 +279,18 @@ def run5(state):
         #########################################################
         # RUN 5: ?? Points
         #########################################################
+
+        #####
+        # M01: Innovation Project & M13: Power-To-X
+        #####
         run5A = Thread(target=Trun5A)
         run5A.start()
         driveStraight(45, 1400, True)
         driveStraight(-30, 300, True) 
+
+        #####
+        # M12: Water Reservoir
+        #####
         move_tank.on_for_degrees(-15, 15, 165, True)
         WheelShutdown()
         driveStraight(30, 110, True)
