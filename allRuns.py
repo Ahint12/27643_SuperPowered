@@ -258,7 +258,7 @@ def run4(state):
         driveStraight(-20, 90, True)
         BackMotor.on_for_degrees(-20, 37)
         BackMotorShutdown()
-        move_steering.on_for_degrees(12, 80, 2000)
+        move_steering.on_for_degrees(12, 80, 1900)
         # move_steering.off()
         WheelShutdown()
 
