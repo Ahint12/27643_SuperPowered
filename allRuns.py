@@ -194,7 +194,7 @@ def run3(state):
         driveStraight(35, 215, True)
         oneWheelTurn('Right', 170, 3500, 290)
         driveStraight(80, 350, False)
-        move_steering.on_for_degrees(9, 80, 1300)
+        move_steering.on_for_degrees(7, 80, 1500)
         WheelShutdown()
 
         # Return to masterProgram(), reset display
