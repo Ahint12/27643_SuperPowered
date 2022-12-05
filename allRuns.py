@@ -49,7 +49,7 @@ def run1(state):
         # M10: Power Plant - 25 Points
         #####
         driveStraight(-25, 55, True)
-        twoWheelTurn('Right', 170, 3500, 79)
+        twoWheelTurn('Right', 170, 3500, 70)
         driveStraight(35, 100, False)
         driveStraight(45, 100, False)
         driveStraight(50, 700, False)
@@ -171,7 +171,7 @@ def run3(state):
         #########################################################
 
         driveStraight(35, 230, True)
-        twoWheelTurn('Left', 170, 3500, 85)
+        twoWheelTurn('Left', 170, 3500, 76)
         driveStraight(40, 100, False)
         driveStraight(50, 900, False)
         lineSquare(15, 'Black', 'Right', 0.2)
@@ -285,7 +285,7 @@ def run5(state):
         #####
         run5A = Thread(target=Trun5A)
         run5A.start()
-        driveStraight(45, 1400, True)
+        driveStraight(45, 1300, True)
         driveStraight(-30, 300, True) 
 
         #####
