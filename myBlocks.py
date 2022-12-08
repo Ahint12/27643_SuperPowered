@@ -6,10 +6,9 @@
 import os
 import sys
 import multiprocessing
-# import config
-
 from queue import Queue
 from time import sleep, time
+
 from defineRobot import *
 
 

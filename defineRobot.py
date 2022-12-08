@@ -5,8 +5,6 @@
 
 import os
 import sys
-# import config
-
 from threading import Thread
 from time import sleep, time
 from math import *

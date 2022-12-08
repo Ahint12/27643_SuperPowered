@@ -5,7 +5,6 @@
 
 import os
 import sys
-# import config
 
 from allRuns import *
 from runSelected import *
@@ -15,11 +14,11 @@ def masterProgram():
     print("Starting masterProgram()", file=sys.stderr)
 
     # Assign each Run to each of the labeled Buttons on the EV3 Brick
-    btn.on_left = run1
-    btn.on_enter = run2
-    btn.on_right = run3
-    btn.on_up = run4
-    btn.on_down = run5
+    btn.on_left = Run1
+    btn.on_enter = Run2
+    btn.on_right = Run3
+    btn.on_up = Run4
+    btn.on_down = Run5
     # btn.on_down = ReassignRunButtons
 
     PrintRunNumbersToDisplay()

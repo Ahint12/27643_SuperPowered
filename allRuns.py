@@ -4,11 +4,9 @@
 #
 
 import os
-# from re import A
 import sys
-# import config
-
 from time import sleep, time
+
 from defineRobot import *
 from myBlocks import *
 
@@ -19,15 +17,8 @@ def Trun1A():
 def Trun1B():
     motorStall('A', -10, -7)
 
-def run1(state):
-    if state:
-        print("run1() button pressed", file=sys.stderr)  
-        sound.beep()
-        # Clear the first 2 rows of text on the LCD screen using the lcd.rectangle function
-        lcd.rectangle(False, x1=0, y1=0, x2=177, y2=39, fill_color='white',outline_color='white')
-        lcd.text_pixels("RUN 1", clear_screen=False, x=0, y=0, text_color='black', font=DisplayFont)
-        lcd.update()
-        print("Starting run1()", file=sys.stderr)
+def Run1_Thread():
+    if (True):
 
         #########################################################
         # RUN 1: 45 Points
@@ -97,15 +88,8 @@ def run1(state):
         PrintRunNumbersToDisplay()
 
 
-def run2(state):
-    if state:
-        print("run2() button pressed", file=sys.stderr)  
-        sound.beep()
-        # Clear the first 2 rows of text on the LCD screen using the lcd.rectangle function
-        lcd.rectangle(False, x1=0, y1=0, x2=177, y2=39, fill_color='white',outline_color='white')
-        lcd.text_pixels("RUN 2", clear_screen=False, x=0, y=0, text_color='black', font=DisplayFont)
-        lcd.update()
-        print("Starting run2()", file=sys.stderr)
+def Run2_Thread():
+    if (True):
         
         #########################################################
         # RUN 2: ?? Points
@@ -156,15 +140,8 @@ def run2(state):
         PrintRunNumbersToDisplay()
 
 
-def run3(state):
-    if state:
-        print("run3() button pressed", file=sys.stderr)  
-        sound.beep()
-        # Clear the first 2 rows of text on the LCD screen using the lcd.rectangle function
-        lcd.rectangle(False, x1=0, y1=0, x2=177, y2=39, fill_color='white',outline_color='white')
-        lcd.text_pixels("RUN 3", clear_screen=False, x=0, y=0, text_color='black', font=DisplayFont)
-        lcd.update()
-        print("Starting run3()", file=sys.stderr)
+def Run3_Thread():
+    if (True):
         
         #########################################################
         # RUN 3: ?? Points
@@ -207,15 +184,8 @@ def Trun4A():
     BackMotor.on_for_degrees(10, 60)
     BackMotorShutdown()
 
-def run4(state):
-    if state:
-        print("run4() button pressed", file=sys.stderr)  
-        sound.beep()
-        # Clear the first 2 rows of text on the LCD screen using the lcd.rectangle function
-        lcd.rectangle(False, x1=0, y1=0, x2=177, y2=39, fill_color='white',outline_color='white')
-        lcd.text_pixels("RUN 4", clear_screen=False, x=0, y=0, text_color='black', font=DisplayFont)
-        lcd.update()
-        print("Starting run1()", file=sys.stderr)
+def Run4_Thread():
+    if (True):
 
         #########################################################
         # RUN 4: ?? Points
@@ -266,15 +236,8 @@ def run4(state):
 def Trun5A():
     motorStall('A', 15, 10)
 
-def run5(state):
-    if state:
-        print("run5() button pressed", file=sys.stderr)  
-        sound.beep()
-        # Clear the first 2 rows of text on the LCD screen using the lcd.rectangle function
-        lcd.rectangle(False, x1=0, y1=0, x2=177, y2=39, fill_color='white',outline_color='white')
-        lcd.text_pixels("RUN 5", clear_screen=False, x=0, y=0, text_color='black', font=DisplayFont)
-        lcd.update()
-        print("Starting run5()", file=sys.stderr)
+def Run5_Thread():
+    if (True):
 
         #########################################################
         # RUN 5: ?? Points
@@ -304,4 +267,139 @@ def run5(state):
         sound.play_file('/home/robot/sounds/fanfare.wav', volume=100)
 
         # Return to masterProgram(), reset display
+        PrintRunNumbersToDisplay()
+
+
+def Run1(state):
+    if state:
+        print("Run1 button pressed", file=sys.stderr)  
+        sound.beep()
+        # Clear the first 2 rows of text on the LCD screen using the lcd.rectangle function
+        lcd.rectangle(False, x1=0, y1=0, x2=177, y2=39, fill_color='white',outline_color='white')
+        lcd.text_pixels("RUN 1", clear_screen=False, x=0, y=0, text_color='black', font=DisplayFont)
+        lcd.update()
+
+        t = multiprocessing.Process(target=Run1_Thread)
+        t.start()
+
+        while True:
+            if btn.any():
+                sound.beep()
+                print("Run Abort button pressed", file=sys.stderr)  
+                t.terminate()
+                WheelShutdown()
+                break
+            if (not t.is_alive()): 
+                print("Run1_Thread successfully completed, exiting", file=sys.stderr)  
+                break 
+            sleep(0.5)
+
+        PrintRunNumbersToDisplay()
+
+
+def Run2(state):
+    if state:
+        print("Run2 button pressed", file=sys.stderr)  
+        sound.beep()
+        # Clear the first 2 rows of text on the LCD screen using the lcd.rectangle function
+        lcd.rectangle(False, x1=0, y1=0, x2=177, y2=39, fill_color='white',outline_color='white')
+        lcd.text_pixels("RUN 2", clear_screen=False, x=0, y=0, text_color='black', font=DisplayFont)
+        lcd.update()
+
+        t = multiprocessing.Process(target=Run2_Thread)
+        t.start()
+
+        while True:
+            if btn.any():
+                sound.beep()
+                print("Run Abort button pressed", file=sys.stderr)  
+                t.terminate()
+                WheelShutdown()
+                break
+            if (not t.is_alive()): 
+                print("Run2_Thread successfully completed, exiting", file=sys.stderr)  
+                break 
+            sleep(0.5)
+
+        PrintRunNumbersToDisplay()
+
+
+def Run3(state):
+    if state:
+        print("Run3 button pressed", file=sys.stderr)  
+        sound.beep()
+        # Clear the first 2 rows of text on the LCD screen using the lcd.rectangle function
+        lcd.rectangle(False, x1=0, y1=0, x2=177, y2=39, fill_color='white',outline_color='white')
+        lcd.text_pixels("RUN 3", clear_screen=False, x=0, y=0, text_color='black', font=DisplayFont)
+        lcd.update()
+
+        t = multiprocessing.Process(target=Run3_Thread)
+        t.start()
+
+        while True:
+            if btn.any():
+                sound.beep()
+                print("Run Abort button pressed", file=sys.stderr)  
+                t.terminate()
+                WheelShutdown()
+                break
+            if (not t.is_alive()): 
+                print("Run3_Thread successfully completed, exiting", file=sys.stderr)  
+                break 
+            sleep(0.5)
+
+        PrintRunNumbersToDisplay()
+
+
+def Run4(state):
+    if state:
+        print("Run4 button pressed", file=sys.stderr)  
+        sound.beep()
+        # Clear the first 2 rows of text on the LCD screen using the lcd.rectangle function
+        lcd.rectangle(False, x1=0, y1=0, x2=177, y2=39, fill_color='white',outline_color='white')
+        lcd.text_pixels("RUN 4", clear_screen=False, x=0, y=0, text_color='black', font=DisplayFont)
+        lcd.update()
+
+        t = multiprocessing.Process(target=Run4_Thread)
+        t.start()
+
+        while True:
+            if btn.any():
+                sound.beep()
+                print("Run Abort button pressed", file=sys.stderr)  
+                t.terminate()
+                WheelShutdown()
+                break
+            if (not t.is_alive()): 
+                print("Run4_Thread successfully completed, exiting", file=sys.stderr)  
+                break 
+            sleep(0.5)
+
+        PrintRunNumbersToDisplay()
+
+
+def Run5(state):
+    if state:
+        print("Run5 button pressed", file=sys.stderr)  
+        sound.beep()
+        # Clear the first 2 rows of text on the LCD screen using the lcd.rectangle function
+        lcd.rectangle(False, x1=0, y1=0, x2=177, y2=39, fill_color='white',outline_color='white')
+        lcd.text_pixels("RUN 5", clear_screen=False, x=0, y=0, text_color='black', font=DisplayFont)
+        lcd.update()
+
+        t = multiprocessing.Process(target=Run5_Thread)
+        t.start()
+
+        while True:
+            if btn.any():
+                sound.beep()
+                print("Run Abort button pressed", file=sys.stderr)  
+                t.terminate()
+                WheelShutdown()
+                break
+            if (not t.is_alive()): 
+                print("Run5_Thread successfully completed, exiting", file=sys.stderr)  
+                break 
+            sleep(0.5)
+
         PrintRunNumbersToDisplay()
